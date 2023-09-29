@@ -1,7 +1,7 @@
 import telebot
 import json
 
-bot = telebot.TeleBot('6424132062:AAFrP6sJdsl1zYaPOR6O_swC18hWeYU5hdM')
+bot = telebot.TeleBot('')
 
 # Создаем пустой словарь для хранения информации о пользователях
 users_data = {}
