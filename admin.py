@@ -1,7 +1,5 @@
 from telebot import types
-import datetime
-import text
-import schedule  
+import json
 admin_usernames = {
     'oblivisheee': '1493358684',
     'Nikita Gennadyevich': '5752567293',
@@ -22,57 +20,32 @@ def admin_token_check(input_token: str):
         if admin_username in admin_usernames:
             print(f"Successfully logged in as admin: {admin_username} with ID: {admin_usernames[admin_username]}.\nLink to profile: https://t.me/{admin_username.replace(' ', '')}")
             return True, admin_usernames[admin_username]
-    return False, None
-
-
-class HeadMan():
-    def check_token(input_token):
-            if admin_token_check in admin_tokens:
-                admin_username = admin_tokens[input_token]
-                if admin_username in admin_usernames:
-                    print(f"Successfully logged in as admin: {admin_username} with ID: {admin_usernames[admin_username]}.\nLink to profile: https://t.me/{admin_username.replace(' ', '')}")
-                    return True, admin_usernames[admin_username]
-            return False, None
-    def start(message, bot):
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton("📚 Уроки сегодня")
-        btn2 = types.KeyboardButton("❓ Информация")
-        btn3 = types.KeyboardButton("😱 Список отсуствующих")
-        markup.add(btn1, btn2, btn3)
-        bot.send_message(message.chat.id, text=text.START_GREETING, reply_markup=markup)
-
-    def info(message, bot):
-        markup = types.InlineKeyboardMarkup()
-        button1 = types.InlineKeyboardButton("Связь с создателем.", url='https://t.me/oblivisheee')
-        markup.add(button1)
-        bot.send_message(message.chat.id, text=text.INFO_BOT.format(message.from_user), reply_markup=markup)
-
-    def lesson_day(message, bot, lesson_output):
-        today_schedule = lesson_output.get_today_schedule()
-        if isinstance(today_schedule, list):
-            if today_schedule:  
-                schedule_message = f"Расписание на {text.DAY_MAPPING_CORRECTED[datetime.datetime.now().strftime('%A').lower()]}:\n"
-                for lesson in today_schedule:
-                    lesson_number = lesson.get('урок', 'Урок не найден').split()[-1]
-                    lesson_name = lesson.get(f"урок {lesson_number}", 'Урок не найден')
-                    schedule_message += f"Урок {lesson_number}: {lesson_name} ({lesson['время']})\n"
-                bot.send_message(message.chat.id, schedule_message)
-            else:
-                bot.send_message(message.chat.id, "Уроки не были найдены.")
         else:
-            bot.send_message(message.chat.id, text.ERROR_LESSON_NOT_FOUND)
-    def managerPeople(bot, message):
-        if message.text == '😱 Список отсуствующих':
-            bot.send_message(message.chat.id, text.PEOPLE_WHOSE_IS_NO)
+            return False, None
 
-def update_today():
-    today = datetime.datetime.now().strftime('%A').lower()
-    return today
+"""class DisciplineManager:
+    def __init__(self, data_file):
+        self.data_file = data_file
+        self.students = []
+        self.load_data()
 
-schedule.every().day.at("00:00").do(update_today)
+    def add_student(self, name):
+        self.students.append(name)
+        self.save_data()
 
-import threading
-thread = threading.Thread(target=lambda: schedule.every(1).seconds.do(lambda: None))
-thread.start()
-        
-    
+    def add_students(self, names):
+        self.students.extend(names)
+        self.save_data()
+
+    def save_data(self):
+        with open(self.data_file, 'w') as json_file:
+            json.dump(self.students, json_file)
+
+    def load_data(self):
+        try:
+            with open(self.data_file, 'r') as json_file:
+                self.students = json.load(json_file)
+        except FileNotFoundError:
+            self.students = []
+"""
+

@@ -11,4 +11,23 @@ DAY_MAPPING_CORRECTED = {
     'saturday': 'субботу',
     'sunday': 'воскресенье'
 }
+
+DAY_MAPPING_NON_CORRECTED = {
+    'monday': 'понедельник',
+    'tuesday': 'вторник',
+    'wednesday': 'среда',
+    'thursday': 'четверг',
+    'friday': 'пятница',
+    'saturday': 'суббота',
+    'sunday': 'воскресенье'
+}
+GROUP_CHOOSE = 'Пожалуйста, выберите вашу группу в которой вы состоите. От этого зависит, какой тип расписания будет отображаться у вас.'
+GROUP_CHOOSE_CHOICES = {
+    '1': 'Вы успешно выбрали группу 1. Вы всегда можете изменить её в настройках.',
+    '2': 'Вы успешно выбрали группу 2. Вы всегда можете изменить её в настройках.'
+}
+GROUP_NOT_EXISTS = 'Такой группы не существует, выберите существующую.'
 PEOPLE_WHOSE_IS_NO = 'Напишите имя и фамилию человека который отсутсвует.'
+YOU_ARE_NOT_AUTHORIZED = 'Вы не включены в white-list, если вы являетесь учеником - то напишите мне.'
+class localAttention():
+    JSON_FILE_SUCCESS_MADE = 'JSON-File successfully created.'
