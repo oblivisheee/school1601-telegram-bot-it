@@ -22,30 +22,3 @@ def admin_token_check(input_token: str):
             return True, admin_usernames[admin_username]
         else:
             return False, None
-
-"""class DisciplineManager:
-    def __init__(self, data_file):
-        self.data_file = data_file
-        self.students = []
-        self.load_data()
-
-    def add_student(self, name):
-        self.students.append(name)
-        self.save_data()
-
-    def add_students(self, names):
-        self.students.extend(names)
-        self.save_data()
-
-    def save_data(self):
-        with open(self.data_file, 'w') as json_file:
-            json.dump(self.students, json_file)
-
-    def load_data(self):
-        try:
-            with open(self.data_file, 'r') as json_file:
-                self.students = json.load(json_file)
-        except FileNotFoundError:
-            self.students = []
-"""
-
